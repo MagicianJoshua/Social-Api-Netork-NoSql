@@ -40,7 +40,7 @@ connection.once("open", async () => {
         })
     
     thoughts.push(thought);
-    user.thoughts._id.push(thought._id);
+    user.thoughts.push(thought._id);
     }
 
     await User.collection.insertMany(users);

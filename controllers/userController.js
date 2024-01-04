@@ -42,8 +42,35 @@ module.exports = {
 
     async DeleteUser(req,res) {
       try {
-        const user = await User.findByIdAndDelete(req.params.userOd)
+        const user = await User.findByIdAndDelete(req.params.userId)
         res.json(`${user.username} has been deleted`);
+      } catch (err) {
+        res.status(500).json(err)
+      }
+    },
+    async AddFriend(req,res) {
+      try {
+        const user = await User.findByIdAndUpdate(req.params.userId, 
+          {$addToSet:{friends:req.params.friendId}},
+          {new:true});
+
+          
+
+        if (!user) {
+          return res.status(404).json("no user found");
+        }
+        res.json(user);
+      } catch (err) {
+        res.status(500).json(err)
+      }
+    },
+    async DeleteFriend(req,res) {
+      try {
+        const user = await User.findByIdAndUpdate(req.params.userId, { $pull: {friends:{id:req.params.friendId}}},)
+        if (!user) {
+          return res.status(404).json("no user found");
+        }
+        res.json(user);
       } catch (err) {
         res.status(500).json(err)
       }
