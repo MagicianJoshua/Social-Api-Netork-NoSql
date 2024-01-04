@@ -39,7 +39,14 @@ const thoughtSchema = new Schema({
         type:String,
         require:true,
     },
-    reactions:[reactionSchema]
+    reactions:[reactionSchema],
+
+}, {
+    toJSON:{
+        virtuals:true,
+        getters:true,
+    },
+    id:false,
 })
 
 const Thought = model("thought",thoughtSchema );
