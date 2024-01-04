@@ -1,6 +1,6 @@
 const connection = require("../config/connection")
 const User = require("../models/User.js");
-const {Usernames,Emails} = require("./data")
+const {Usernames,Emails,Sayings} = require("./data")
 
 
 console.time("Commence Seeding");
@@ -15,6 +15,7 @@ connection.once("open", async () => {
         let newUser = {
             username:Usernames[i],
             email:Emails[i],
+            thoughts:Sayings[i]
         };
         users.push(newUser);
     }
