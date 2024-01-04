@@ -1,5 +1,6 @@
 const { Schema, model, Mongoose} = require('mongoose');
 
+
 const reactionSchema = new Schema ({
     reactionId:{
     type:Schema.Types.ObjectId,
@@ -40,4 +41,8 @@ const thoughtSchema = new Schema({
     },
     reactions:[reactionSchema]
 })
+
+const Thought = model("thought",thoughtSchema );
+
+module.exports = Thought;
 
