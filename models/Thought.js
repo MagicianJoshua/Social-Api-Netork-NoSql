@@ -20,6 +20,13 @@ const reactionSchema = new Schema ({
         default:Date.now(),
         get:timestamp => new Date(timestamp).toLocaleString('en-US'),
     },
+},
+{
+    toJSON:{
+        
+        getters:true,
+    },
+    id:false,
 })
 
 
@@ -47,6 +54,10 @@ const thoughtSchema = new Schema({
         getters:true,
     },
     id:false,
+})
+
+thoughtSchema.virtual("reactionCount").get(function(){
+    return this.reactions.length;
 })
 
 const Thought = model("thought",thoughtSchema );
