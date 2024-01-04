@@ -15,8 +15,6 @@ connection.once("open", async () => {
         let newUser = {
             username:Usernames[i],
             email:Emails[i],
-            thoughts:[],
-            friends:[],
         };
         users.push(newUser);
     }
